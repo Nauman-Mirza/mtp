@@ -32,7 +32,7 @@ include '../db_connection.php';
         <select name="branch" required>
             <?php
                 // Fetch branch names from the database
-                $selectQuery = "SELECT name FROM branch_list";
+                $selectQuery = "SELECT name FROM branch_list WHERE status = 1";
                 $result = $conn->query($selectQuery);
 
                 // Display branch names in the dropdown

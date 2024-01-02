@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $insertResult = $conn->query($insertQuery);
 
         if ($insertResult) {
-            echo "User registration successful!";
+            header("Location: ../login.php");
         } else {
             echo "Error: " . $conn->error;
         }

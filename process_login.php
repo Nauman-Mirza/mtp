@@ -12,13 +12,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = $result->fetch_assoc();
 
         if ($password == $row["password"]) {
+            // Start a session
+            session_start();
+
+            // Store user information in the session
+            $_SESSION["user_id"] = $row["id"];
+            $_SESSION["username"] = $row["username"];
+            $_SESSION["user_type"] = $row["type"];
+
             if ($row["type"] == 1) {
-                echo "admin login successful";
-                // header("Location: admin_dashboard.php");
+                // Admin user, redirect to admin dashboard
+                header("Location: Admin/admin_dashboard.php");
                 exit();
             } elseif ($row["type"] == 2) {
-                echo "user login successful";
-                // header("Location: user_dashboard.php");
+                // Regular user, redirect to user dashboard
+                header("Location: User/user_dashboard.php");
                 exit();
             } else {
                 echo "Unknown user type!";
